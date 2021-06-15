@@ -1,3 +1,15 @@
+<?php 
+session_start();
+$admin_id = isset($_SESSION['admin_id']);
+if($admin_id){
+	header('location:admin_master.php');
+}
+if(isset($_POST['btn'])){
+	require'../classes/admin.php';
+	$obj_admin = new Admin();
+	$message  = $obj_admin->admin_login_check($_POST);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,17 +34,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 	<!-- end: CSS -->
 	
-
-	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<link id="ie-style" href="css/ie.css" rel="stylesheet">
-	<![endif]-->
-	
-	<!--[if IE 9]>
-		<link id="ie9style" href="css/ie9.css" rel="stylesheet">
-	<![endif]-->
-		
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="../assets/admin_assets/img/favicon.ico">
 	<!-- end: Favicon -->
@@ -56,12 +57,13 @@
 						<a href="#"><i class="halflings-icon cog"></i></a>
 					</div>
 					<h2>Login to your account</h2>
-					<form class="form-horizontal" action="index.html" method="post">
+					<h2 style="color: red;"><?php if(isset($message)){echo $message;} ?></h2>
+					<form class="form-horizontal" action="" method="post">
 						<fieldset>
 							
-							<div class="input-prepend" title="Username">
+							<div class="input-prepend" title="email_address">
 								<span class="add-on"><i class="halflings-icon user"></i></span>
-								<input class="input-large span10" name="username" id="username" type="text" placeholder="type username"/>
+								<input class="input-large span10" name="email_address" id="email_address" type="email" placeholder="type email"/>
 							</div>
 							<div class="clearfix"></div>
 
@@ -74,7 +76,7 @@
 							<label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
 
 							<div class="button-login">	
-								<button type="submit" class="btn btn-primary">Login</button>
+								<button type="submit" name="btn" class="btn btn-primary">Login</button>
 							</div>
 							<div class="clearfix"></div>
 					</form>
