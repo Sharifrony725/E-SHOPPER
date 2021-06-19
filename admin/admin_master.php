@@ -94,6 +94,14 @@ if (isset($_GET['status'])) {
 						include './pages/manage_manufacture_content.php';
 					} elseif ($pages == 'edit_manufacture') {
 						include './pages/edit_manufacture_content.php';
+					} elseif ($pages == 'add_product') {
+						include './pages/add_product_content.php';
+					} elseif ($pages == 'manage_product') {
+						include './pages/manage_product_content.php';
+					} elseif ($pages = 'view_product') {
+						include './pages/view_product_content.php';
+					} elseif ($pages == 'edit_product') {
+						include './pages/edit_product_content.php';
 					}
 				} else {
 					include './pages/home_content.php';
