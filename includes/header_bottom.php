@@ -19,7 +19,9 @@ $query_result = $obj_app->select_all_published_category();
 					<ul class="nav navbar-nav collapse navbar-collapse">
 						<li><a href="index.php" class="active">Home</a></li>
 						<?php while ($category_info = mysqli_fetch_assoc($query_result)) { ?>
-							<li><a href="contact-us.html"><?php echo $category_info['category_name'] ?></a></li>
+							<li><a href="category.php?id=<?php echo $category_info['category_id']; ?>">
+									<?php echo $category_info['category_name'] ?></a>
+							</li>
 						<?php }  ?>
 					</ul>
 				</div>

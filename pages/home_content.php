@@ -225,33 +225,34 @@ $query_result = $obj_app->select_latest_product_info();
 				<div class="features_items">
 					<!--features_items-->
 					<h2 class="title text-center">Latest Items</h2>
-					<div class="col-sm-4">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="assets/front_end_assets/images/home/product1.jpg" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</div>
-								<div class="product-overlay">
-									<div class="overlay-content">
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+					<?php while ($product_info = mysqli_fetch_assoc($query_result)) { ?>
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img width="250px" height="250px" src="assets/<?Php echo $product_info['product_image']; ?>" alt="" />
+										<h2>BDT <?php echo $product_info['product_price'] ?></h2>
+										<p><?php echo $product_info['product_name'] ?></p>
+										<a href="product_details.php?id<?php echo $product_info['product_id']; ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Details</a>
+									</div>
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<h2>BDT <?php echo $product_info['product_price'] ?></h2>
+											<p><?php echo $product_info['product_name'] ?></p>
+											<a href="product_details.php?id=<?php echo $product_info['product_id']; ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Details</a>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="choose">
-								<ul class="nav nav-pills nav-justified">
-									<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-									<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-								</ul>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+									</ul>
+								</div>
 							</div>
 						</div>
-					</div>
 
-
+					<?php } ?>
 				</div>
 				<!--features_items-->
 
